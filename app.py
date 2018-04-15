@@ -2,16 +2,41 @@
 # -*- coding: utf-8 -*-
 from bottle import route, run, template, request, static_file, url, get, post, response, error
 import sys, codecs
+import oauth2
+import webbrowser as web
+from twython import Twython, TwythonError
 sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
 
 @route("/")
 def html_index():
-    return template("index")
+    consumer = oauth2.Consumer(key="0V0gxq8Gbqu52x1YGIwbGOjRR", secret="xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2")
+    client = oauth2.Client(consumer)
+    resp, content = client.request("https://api.twitter.com/oauth/request_token", "GET")
+
+    # Tokenを辞書型にセット
+    str = content.decode('utf-8')
+    list = [t.split() for t in str.split("&")]
+    d = ({})
+    for t in list:
+        a = t[0].split("=")
+        d.update({ a[0] : a[1] }) # dの中身は文字列
+
+    #d = {'oauth_token': '5k04iwAAAAAA1OhDAAABXO9D4lk', 'oauth_token_secret': 'ITYIIQVh9Iga6ue4ox8jwjO0sml7RTJU', 'oauth_callback_confirmed': 'true'}
+
+    # 認証用ページを開く
+    url = "https://api.twitter.com/oauth/authorize?oauth_token=" + d['oauth_token']
+    return """
+        <h1>ブロック崩しメーカー</h1>
+        <div><a href='"""+url+"""'>認証ページへ</a></div>
+        """
+
+@route("/back")
+def back():
+
 
 @route("/static/<filepath:path>", name="static_file")
 def static(filepath):
     return static_file(filepath, root="./static")
-
 
 @get("/login")
 def login():
