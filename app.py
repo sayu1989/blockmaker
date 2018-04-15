@@ -30,10 +30,6 @@ def html_index():
         <div><a href='"""+url+"""'>認証ページへ</a></div>
         """
 
-@route("/back")
-def back():
-
-
 @route("/static/<filepath:path>", name="static_file")
 def static(filepath):
     return static_file(filepath, root="./static")
