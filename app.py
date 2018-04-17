@@ -4,31 +4,48 @@ from bottle import route, run, template, request, static_file, url, get, post, r
 import sys, codecs
 import oauth2
 import webbrowser as web
-from twython import Twython, TwythonError
+import tweepy
 sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
 
 @route("/")
 def html_index():
-    consumer = oauth2.Consumer(key="0V0gxq8Gbqu52x1YGIwbGOjRR", secret="xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2")
-    client = oauth2.Client(consumer)
-    resp, content = client.request("https://api.twitter.com/oauth/request_token", "GET")
-
-    # Tokenを辞書型にセット
-    str = content.decode('utf-8')
-    list = [t.split() for t in str.split("&")]
-    d = ({})
-    for t in list:
-        a = t[0].split("=")
-        d.update({ a[0] : a[1] }) # dの中身は文字列
-
-    #d = {'oauth_token': '5k04iwAAAAAA1OhDAAABXO9D4lk', 'oauth_token_secret': 'ITYIIQVh9Iga6ue4ox8jwjO0sml7RTJU', 'oauth_callback_confirmed': 'true'}
+    auth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2", "http://127.0.0.1:8000/back")
+    redirect_url = auth.get_authorization_url()
 
     # 認証用ページを開く
-    url = "https://api.twitter.com/oauth/authorize?oauth_token=" + d['oauth_token']
     return """
         <h1>ブロック崩しメーカー</h1>
-        <div><a href='"""+url+"""'>認証ページへ</a></div>
+        <div><a href='"""+redirect_url+"""'>ブロックくずしを作る</a></div>
         """
+
+@route('/back', method='GET')
+def callback():
+    # Let's say this is a web app, so we need to re-build the auth handler
+    auth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2")
+    token = request.GET.get('oauth_token')
+    verifier = request.GET.get('oauth_verifier')
+    auth.request_token = { 'oauth_token' : token, 'oauth_token_secret' : verifier }
+    auth.get_access_token(verifier)
+
+    key = auth.access_token
+    secret = auth.access_token_secret
+
+    auth.set_access_token(key,secret)
+    api = tweepy.API(auth)
+
+    # プロフィール情報を取得
+    myinfo = api.me()
+    myname = myinfo.screen_name
+    myid = myinfo.name
+    myimage = myinfo.profile_image_url
+
+    return """
+        <p>ログインが完了しました。<br />
+        <img src='"""+str(myimage)+"""' />
+        ユーザー名は"""+str(myname)+"""ユーザーIDは"""+str(myid)+"""<br />
+        ここでDBの登録処理とログイン判定を行い、元の画面に戻します。</p>
+        """
+
 
 @route("/static/<filepath:path>", name="static_file")
 def static(filepath):
@@ -61,6 +78,6 @@ def check_login(username, password):
 
 @error(404)
 def error404(error):
-    return template("404")
+    return "<p>not found</p>"
 
 run(host="localhost", port=8000, debug=True, reloader=True)
