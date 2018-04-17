@@ -5,18 +5,19 @@ import sys, codecs
 import oauth2
 import webbrowser as web
 import tweepy
+import jinja2
+from bottle import TEMPLATE_PATH, jinja2_template as template
 sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
+
+TEMPLATE_PATH.append("./template")
 
 @route("/")
 def html_index():
     auth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2", "http://127.0.0.1:8000/back")
     redirect_url = auth.get_authorization_url()
 
-    # 認証用ページを開く
-    return """
-        <h1>ブロック崩しメーカー</h1>
-        <div><a href='"""+redirect_url+"""'>ブロックくずしを作る</a></div>
-        """
+    # テンプレートファイルを開く
+    return template('index.j2', redirect_url=redirect_url)
 
 @route('/back', method='GET')
 def callback():
@@ -45,7 +46,6 @@ def callback():
         ユーザー名は"""+str(myname)+"""ユーザーIDは"""+str(myid)+"""<br />
         ここでDBの登録処理とログイン判定を行い、元の画面に戻します。</p>
         """
-
 
 @route("/static/<filepath:path>", name="static_file")
 def static(filepath):
