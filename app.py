@@ -54,12 +54,22 @@ def mypage():
         myname = myinfo.screen_name
         myid = myinfo.name
         myimage = myinfo.profile_image_url
+
+        # ユーザーテーブルの全TwitterIDから検索して true false
+
+        #if #このTwitterIDがサイト内に登録済みの場合
+          # データベースから該当のユーザーIDを取得して変数に格納
+        #else 新規登録ユーザーの場合
+          # SQLに格納
+          #INSERT 〜〜〜〜〜〜〜 新しくレコードを追加
+          #追加したユーザーIDを変数に格納
+
     else:
         myname = 'わしのなまえ'
         myid = 'slkajf'
         myimage = 'sample.png'
 
-    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage )
+    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage, userid=userid )
 
 
 @route('/create')
