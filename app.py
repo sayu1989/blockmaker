@@ -22,11 +22,16 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 @route("/")
 def html_index():
-    auth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2", "http://127.0.0.1:8000/mypage")
-    redirect_url = auth.get_authorization_url()
+    # マイページにcallback
+    myAuth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2", "http://127.0.0.1:8000/mypage")
+    myLogin_url = myAuth.get_authorization_url()
+
+    # 作成ページにcallback
+    createAuth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2", "http://127.0.0.1:8000/mypage")
+    create_url = createAuth.get_authorization_url()
 
     # テンプレートファイルを開く
-    return template('index.j2', redirect_url=redirect_url)
+    return template('index.j2', myLogin_url=myLogin_url, create_url=create_url )
 
 @route('/mypage')
 def mypage():
@@ -53,6 +58,12 @@ def mypage():
         myname = 'わしのなまえ'
         myid = 'slkajf'
         myimage = 'sample.png'
+
+    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage )
+
+
+@route('/create')
+def mypage():
 
     return template('mypage.j2', myname=myname, myid=myid, myimage=myimage )
 
