@@ -69,7 +69,7 @@ def mypage():
         myid = 'slkajf'
         myimage = 'sample.png'
 
-    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage, userid=userid )
+    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage )
 
 
 @route('/create')
