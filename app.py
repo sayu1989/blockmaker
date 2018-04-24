@@ -11,6 +11,7 @@ import jinja2
 from bottle import TEMPLATE_PATH, jinja2_template as template
 import bottle
 import os
+import mysql.connector
 
 sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
 TEMPLATE_PATH.append("./template")
@@ -55,7 +56,17 @@ def mypage():
         myid = myinfo.name
         myimage = myinfo.profile_image_url
 
-        # ユーザーテーブルの全TwitterIDから検索して true false
+        conn = mysql.connector.connect(user='root', password='root', host='localhost:8000', database='blockmaker_db')
+        cur = conn.cursor()
+
+        reslt = cur.execute("select * from Users where twitter_id like (myid)")
+
+        #for row in cur.fetchall():
+            #print(row[0],row[1])
+
+        #cur.close
+        #conn.close
+# ユーザーテーブルの全TwitterIDから検索して true false
 
         #if #このTwitterIDがサイト内に登録済みの場合
           # データベースから該当のユーザーIDを取得して変数に格納
@@ -69,7 +80,7 @@ def mypage():
         myid = 'slkajf'
         myimage = 'sample.png'
 
-    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage )
+    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage,reslt=reslt)
 
 
 @route('/create')
