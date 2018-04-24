@@ -1,0 +1,45 @@
+{% include "header.html" %}
+  <header class="header cf">
+    <div class="wrapper">
+      <h1 class="header__logo"><a href="/"><img src="./static/img/common/logo-mini.png" alt="ブロック崩しメーカー" width="180" /></a></h1>
+      <div class="header__icon"><a href="/mypage"><span class="header__name">@{{ myid }}</span> <img src="./static/img/top/{{ myimage }}" alt="ユーザー名" /> </a></div>
+    </div>
+  </header>
+  <div class="page-create">
+    <div class="main-container wrapper">
+      <div class="p-mb-p">
+        <p class="p-ts__small p-tc__gray">STEP1 / 4</p>
+        <h1 class="sec-h1">新着ブロックくずし</h1>
+        <div>説明画像</div>
+      </div>
+      <section class="p-mb-sec">
+        <div class="p-bl-fill">
+            <p class="p-ta-c p-bl-line__small p-mb-p p-tc__gray p-ts__small p-bl-fill__lightgray">①か②のどちらか必須</p>
+            <h3 class="h3">①上：色付きブロック</h3>
+            <p class="p-ts__small p-tc__gray p-mb-p">サイト上で配置を指定できます。②をアップする場合は配置しないこともできます。</p>
+            <h3 class="h3">②上or真ん中：ブロック画像</h3>
+            <p class="p-ts__small p-tc__gray p-mb-p">PNG画像をアップロードして下さい。①が配置されている場合はアップしないこともできます。</p>
+            <hr class="p-hr" />
+            <h3 class="h3">③下：ベース画像 <span class="p-tc__red">※必須</span></h3>
+            <p class="p-ts__small p-tc__gray">JPGもしくはPNG画像をアップロードして下さい。</p>
+        </div>
+      </section>
+      <section class="p-mb-sec">
+        <h2 class="h2">画像を選択して下さい</h2>
+        <div class="p-mb-p p-ta-c p-mb-blo">
+          <div class="p-img-place p-m-a p-mb-p"></div>
+          <h3 class="h3">①ベース画像 <span class="p-tc__red">※必須</span></h3>
+          <p class="p-ts__small p-tc__gray">PNG・JPG//0000px×000px以内</p>
+          <input type="file" name="example" size="30">
+        </div>
+        <div class="p-mb-p p-ta-c">
+          <div class="p-img-place p-m-a p-mb-p"></div>
+          <h3 class="h3">①ベース画像 <span class="p-tc__red">※必須</span></h3>
+          <p class="p-ts__small p-tc__gray">PNG・JPG//0000px×000px以内</p>
+          <input type="file" name="example" size="30">
+        </div>
+      </section>
+      <div class="top-sec1__button"><a class="p-button" href='#'>次へ</a></div>
+    </div>
+  </div>
+{% include "footer.html" %}
