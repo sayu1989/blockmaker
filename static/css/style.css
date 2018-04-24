@@ -1,1 +1,480 @@
-/***  ***/
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body {
+line-height: 1;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+html{
+  font-size: 62.5%;
+  color: #4a4a4a;
+}
+body{
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+}
+a{
+  color: #4a4a4a;
+  text-decoration: none;
+}
+img{
+  -webkit-backface-visibility: hidden;
+  max-width: 100%;
+}
+.last-col {
+  float: right;
+  margin-right: 0 !important; }
+
+.cf:after {
+    content:"";
+    display:table;
+    clear:both;
+}
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/************************
+GRID
+/*************************/
+@media (max-width: 767px) {
+  .m-all {
+    float: left;
+    width: 100%;
+    margin-right: 0; }
+
+  .m-1of2 {
+    float: left;
+    margin-right: 5%;
+    width: 47.5%; }
+
+  .m-1of3 {
+    float: left;
+    margin-right: 5%;
+    width: 30%; }
+
+  .m-2of3 {
+    float: left;
+    margin-right: 5%;
+    width: 65%; }
+
+  .m-1of4 {
+    float: left;
+    margin-right: 5%;
+    width: 21.25%; }
+
+  .m-3of4 {
+    float: left;
+    margin-right: 5%;
+    width: 73.75%; }
+}
+/* Portrait tablet to landscape */
+@media (min-width: 768px) and (max-width: 967px) {
+  .t-all {
+    float: left;
+    width: 100%;
+    margin-right: 0; }
+
+  .t-1of2 {
+    float: left;
+    margin-right: 5%;
+    width: 47.5%; }
+
+  .t-1of3 {
+    float: left;
+    margin-right: 5%;
+    width: 30%; }
+
+  .t-2of3 {
+    float: left;
+    margin-right: 5%;
+    width: 65%; }
+
+  .t-1of4 {
+    float: left;
+    margin-right: 5%;
+    width: 21.25%; }
+
+  .t-3of4 {
+    float: left;
+    margin-right: 5%;
+    width: 73.75%; }
+
+  .t-1of5 {
+    float: left;
+    margin-right: 5%;
+    width: 16%; }
+
+  .t-2of5 {
+    float: left;
+    margin-right: 5%;
+    width: 37%; }
+
+  .t-3of5 {
+    float: left;
+    margin-right: 5%;
+    width: 58%; }
+
+  .t-4of5 {
+    float: left;
+    margin-right: 5%;
+    width: 79%; }
+}
+/* Landscape to small desktop */
+@media (min-width: 968px) {
+  .d-all {
+    float: left;
+    padding-right: 2em;
+    width: 100%;
+    padding-right: 0; }
+
+  .d-1of2 {
+    float: left;
+    margin-right: 5%;
+    width: 47.5%; }
+
+  .d-1of3 {
+    float: left;
+    margin-right: 5%;
+    width: 30%; }
+
+  .d-2of3 {
+    float: left;
+    margin-right: 5%;
+    width: 65%; }
+
+  .d-1of4 {
+    float: left;
+    margin-right: 5%;
+    width: 21.25%; }
+
+  .d-3of4 {
+    float: left;
+    margin-right: 5%;
+    width: 73.75%; }
+
+  .d-1of5 {
+    float: left;
+    margin-right: 5%;
+    width: 16%; }
+
+  .d-2of5 {
+    float: left;
+    margin-right: 5%;
+    width: 37%; }
+
+  .d-3of5 {
+    float: left;
+    margin-right: 5%;
+    width: 58%; }
+
+  .d-4of5 {
+    float: left;
+    margin-right: 5%;
+    width: 79%; }
+
+  .d-1of6 {
+    float: left;
+    padding-right: 2em;
+    width: 16.6666666667%; }
+
+  .d-5of6 {
+    float: left;
+    padding-right: 2em;
+    width: 83.3333333334%; }
+
+  .d-1of7 {
+    float: left;
+    padding-right: 2em;
+    width: 14.2857142857%; }
+
+  .d-2of7 {
+    float: left;
+    padding-right: 2em;
+    width: 28.5714286%; }
+
+  .d-3of7 {
+    float: left;
+    padding-right: 2em;
+    width: 42.8571429%; }
+
+  .d-4of7 {
+    float: left;
+    padding-right: 2em;
+    width: 57.1428572%; }
+
+  .d-5of7 {
+    float: left;
+    padding-right: 2em;
+    width: 71.4285715%; }
+
+  .d-6of7 {
+    float: left;
+    padding-right: 2em;
+    width: 85.7142857%; }
+
+  .d-1of8 {
+    float: left;
+    padding-right: 2em;
+    width: 12.5%; }
+
+  .d-1of9 {
+    float: left;
+    padding-right: 2em;
+    width: 11.1111111111%; }
+
+  .d-1of10 {
+    float: left;
+    padding-right: 2em;
+    width: 10%; }
+
+  .d-1of11 {
+    float: left;
+    padding-right: 2em;
+    width: 9.09090909091%; }
+
+  .d-1of12 {
+    float: left;
+    padding-right: 2em;
+    width: 8.33%; }
+}
+
+/*** original ***/
+.p-ta-c{
+  text-align: center;
+}
+.p-ts__small{
+  font-size: 1.2rem;
+}
+.p-tc__gray{
+  color: #999;
+}
+.p-button{
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  background: #666;
+  padding: 20px 40px;
+  font-size: 1.7rem;
+  border-radius: 2px;
+}
+.p-mb-p{
+  margin-bottom: 15px;
+}
+
+/*** original ***/
+.wrapper{
+  max-width: 780px;
+  margin: 0 auto;
+}
+.main-container{
+  padding: 10px;
+}
+.sec-wrap{
+  padding: 50px 0;
+}
+.sec-h1{
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.h2{
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.top-main-sec{
+  width: 100%;
+  background-image: url("../img/top/block-bg.png"),url("../img/top/block-bg-check.jpg"),url("../img/top/block-bg-ball.png");
+  background-repeat: repeat-x,repeat,no-repeat;
+  background-size: 321px,121px,112px;
+  padding: 125px 0 70px;
+  animation-name: bg-anime;
+  animation-duration: 8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes bg-anime {
+  0% {background-position:top,top left,top }
+  100% {background-position:top,121px 120px,top }
+}
+header{
+  padding: 10px;
+}
+.header .header_login{
+  text-align: right;
+}
+.header__login-button{
+  border: 2px solid #fff;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  background: rgba(0,0,0,0.2);
+}
+.top-main-sec h1{
+  text-align: center;
+}
+.top-sec1__button{
+  text-align: center;
+  margin: 20px 0 10px;
+}
+.top-sec1__button a{
+  background: #55acee;
+}
+.top-sec__new-block{
+  margin-bottom: 30px;
+}
+.top-sec__new-block:nth-child(4n){
+  margin-right: 0;
+}
+footer{
+  background: #333;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.3rem;
+}
+.header{
+  background: #333;
+}
+.header__logo{
+  float: left;
+  line-height: 40px;
+}
+.header__logo img{
+    vertical-align: middle;
+}
+.header__icon{
+  float: right;
+  line-height: 40px;
+}
+.header__icon span{
+  margin-right: 5px;
+}
+.header__icon a{
+  color: #fff;
+}
+.header__icon img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.sec-link-create{
+  padding: 10px;
+  background-image: url("../img/top/block-bg-check.jpg");
+  width: 100%;
+  text-align: center;
+}
+.p-tab{
+  margin-top: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.p-tab li{
+  display: inline-block;
+}
+.p-tab li a{
+  display: inline-block;
+  padding: 20px 8px;
+}
+.mp-contents{
+  padding-top: 20px;
+}
+.sec-work-block__img{
+  float: left;
+  margin-right: 20px;
+  width: 120px;
+}
+.sec-work-block__info{
+  float: left;
+  padding-top: 10px;
+}
+.sec-work-block__info-date{
+  color: #999;
+  font-size: 1.2rem;
+}
+.sec-work-block__status{
+  margin-top: 10px;
+  color: #999;
+  font-size: 1.2rem;
+  line-height: 10px;
+}
+.sec-work-block__status img{
+  vertical-align: top;
+  margin-right: 2px;
+  display: inline-block;
+}
+.sec-work-block__status span{
+  margin-right: 5px;
+}
+.mp-prof{
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.mp-prof__icon{
+  float: left;
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
+}
+.mp-prof__icon img{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.mp-prof__info{
+  float: left;
+  margin-top: 2px;
+}
+.mp-prof__name{
+  font-weight: bold;
+}
+.mp-prof__id a{
+  color: #55acee;
+}

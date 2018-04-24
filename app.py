@@ -1,55 +1,70 @@
 #!/user/bin/env python
 # -*- coding: utf-8 -*-
 from bottle import route, run, template, request, static_file, url, get, post, response, error
+import bottle
+import os
 import sys, codecs
 import oauth2
 import webbrowser as web
 import tweepy
 import jinja2
 from bottle import TEMPLATE_PATH, jinja2_template as template
-sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
+import bottle
+import os
 
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
 TEMPLATE_PATH.append("./template")
+
+app = bottle.app()
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 @route("/")
 def html_index():
-    auth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2", "http://127.0.0.1:8000/back")
+    auth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2", "http://127.0.0.1:8000/mypage")
     redirect_url = auth.get_authorization_url()
 
     # テンプレートファイルを開く
     return template('index.j2', redirect_url=redirect_url)
 
-@route('/back', method='GET')
-def callback():
-    # Let's say this is a web app, so we need to re-build the auth handler
-    auth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2")
-    token = request.GET.get('oauth_token')
-    verifier = request.GET.get('oauth_verifier')
-    auth.request_token = { 'oauth_token' : token, 'oauth_token_secret' : verifier }
-    auth.get_access_token(verifier)
+@route('/mypage')
+def mypage():
+    if request.GET.get('oauth_token'):
+        # Let's say this is a web app, so we need to re-build the auth handler
+        auth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2")
+        token = request.GET.get('oauth_token')
+        verifier = request.GET.get('oauth_verifier')
+        auth.request_token = { 'oauth_token' : token, 'oauth_token_secret' : verifier }
+        auth.get_access_token(verifier)
 
-    key = auth.access_token
-    secret = auth.access_token_secret
+        key = auth.access_token
+        secret = auth.access_token_secret
 
-    auth.set_access_token(key,secret)
-    api = tweepy.API(auth)
+        auth.set_access_token(key,secret)
+        api = tweepy.API(auth)
 
-    # プロフィール情報を取得
-    myinfo = api.me()
-    myname = myinfo.screen_name
-    myid = myinfo.name
-    myimage = myinfo.profile_image_url
+        # プロフィール情報を取得
+        myinfo = api.me()
+        myname = myinfo.screen_name
+        myid = myinfo.name
+        myimage = myinfo.profile_image_url
+    else:
+        myname = 'わしのなまえ'
+        myid = 'slkajf'
+        myimage = 'sample.png'
 
-    return """
-        <p>ログインが完了しました。<br />
-        <img src='"""+str(myimage)+"""' />
-        ユーザー名は"""+str(myname)+"""ユーザーIDは"""+str(myid)+"""<br />
-        ここでDBの登録処理とログイン判定を行い、元の画面に戻します。</p>
-        """
+    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage )
 
-@route("/static/<filepath:path>", name="static_file")
-def static(filepath):
-    return static_file(filepath, root="./static")
+# static file CSS
+@app.route('/static/css/<filename:path>')
+def static_css(filename):
+    return static_file(filename, root=STATIC_DIR+"/css")
+
+# static file image
+@app.route('/static/img/<filename:path>')
+def static_img(filename):
+    return static_file(filename, root=STATIC_DIR+"/img")
 
 @get("/login")
 def login():
