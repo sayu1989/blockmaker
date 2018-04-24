@@ -27,7 +27,7 @@ def html_index():
     myLogin_url = myAuth.get_authorization_url()
 
     # 作成ページにcallback
-    createAuth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2", "http://127.0.0.1:8000/mypage")
+    createAuth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2", "http://127.0.0.1:8000/create")
     create_url = createAuth.get_authorization_url()
 
     # テンプレートファイルを開く
@@ -74,8 +74,11 @@ def mypage():
 
 @route('/create')
 def mypage():
-
-    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage )
+    # プロフィール情報を取得
+    myname = 'テストネーム'
+    myid = 'falkjsd'
+    myimage = 'sample.png'
+    return template('create.j2', myname=myname, myid=myid, myimage=myimage)
 
 # static file CSS
 @app.route('/static/css/<filename:path>')

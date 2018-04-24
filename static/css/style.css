@@ -286,11 +286,17 @@ GRID
 .p-ta-c{
   text-align: center;
 }
+.p-m-a{
+  margin: 0 auto;
+}
 .p-ts__small{
   font-size: 1.2rem;
 }
 .p-tc__gray{
   color: #999;
+}
+.p-tc__red{
+  color: #e85f5f;
 }
 .p-button{
   display: inline-block;
@@ -304,6 +310,52 @@ GRID
 .p-mb-p{
   margin-bottom: 15px;
 }
+.p-mb-blo{
+  margin-bottom: 25px;
+}
+.p-mb-sec{
+  margin-bottom: 35px;
+}
+.p-bl-fill{
+  background: #fff;
+  border-radius: 4px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 4px;
+}
+.p-bl-fill__red{
+  background: #ffdfdf;
+}
+.p-bl-fill__small{
+  padding: 5px;
+}
+.p-bl-fill__lightgray{
+  background: #fafafa;
+}
+.p-bl-line__small{
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+.p-bl-line__small{
+
+}
+.p-img-place{
+  width: 300px;
+  height: 300px;
+  background: #eee;
+}
+.p-hr{
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+@keyframes bg-anime {
+  0% { background-position: top,top left,top; }
+  100% { background-position: top,121px 120px,top; }
+}
+@keyframes bg-anime2 {
+  0% { background-position: top left }
+  100% { background-position: 121px 120px }
+}
 
 /*** original ***/
 .wrapper{
@@ -311,10 +363,9 @@ GRID
   margin: 0 auto;
 }
 .main-container{
-  padding: 10px;
+  padding: 50px 15px;
 }
 .sec-wrap{
-  padding: 50px 0;
 }
 .sec-h1{
   font-size: 2rem;
@@ -322,7 +373,12 @@ GRID
   margin-bottom: 20px;
 }
 .h2{
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.h3{
+  font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 5px;
 }
@@ -336,10 +392,6 @@ GRID
   animation-duration: 8s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-}
-@keyframes bg-anime {
-  0% {background-position:top,top left,top }
-  100% {background-position:top,121px 120px,top }
 }
 header{
   padding: 10px;
@@ -477,4 +529,14 @@ footer{
 }
 .mp-prof__id a{
   color: #55acee;
+}
+.page-create{
+  width: 100%;
+  background-image: url(../img/top/block-bg-check.jpg);
+  background-repeat: repeat;
+  background-size: 121px;
+  animation-name: bg-anime2;
+  animation-duration: 8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }

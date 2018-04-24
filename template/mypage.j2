@@ -1,12 +1,14 @@
 {% include "header.html" %}
   <header class="header cf">
-    <h1 class="header__logo"><a href="/"><img src="./static/img/common/logo-mini.png" alt="ブロック崩しメーカー" width="180" /></a></h1>
-    <div class="header__icon"><a href="/mypage"><span class="header__name">@{{ myid }}</span> <img src="./static/img/top/{{ myimage }}" alt="ユーザー名" /> </a></div>
+    <div class="wrapper">
+      <h1 class="header__logo"><a href="/"><img src="./static/img/common/logo-mini.png" alt="ブロック崩しメーカー" width="180" /></a></h1>
+      <div class="header__icon"><a href="/mypage"><span class="header__name">@{{ myid }}</span> <img src="./static/img/top/{{ myimage }}" alt="ユーザー名" /> </a></div>
+    </div>
   </header>
   <section class="sec-link-create">
     <div class="top-sec1__button"><a class="p-button" href='{{ redirect_url }}'>ブロックくずしを作る</a></div>
   </section>
-  <div class="main-container wrapper">
+  <div class="main-container wrapper page-mypage">
     <section class="mp-prof">
       <div class="cf">
         <div class="mp-prof__icon">
@@ -29,7 +31,7 @@
         <div class="sec-work-block p-mb-p cf">
             <div class="sec-work-block__img"><a href="#"><img src="./static/img/top/sample.png" alt="作品名" /></a></div>
             <div class="sec-work-block__info">
-                <h2 class="h2"><a href="#">タイトルタイトル</a></h2>
+                <h2 class="h3"><a href="#">タイトルタイトル</a></h2>
                 <div class="sec-work-block__info-date">投稿日：2018/22/22</div>
                 <div class="sec-work-block__status">
                   <span><img src="./static/img/common/icon-play-off-gray.png" height="10" /> 2518</span>
@@ -40,7 +42,7 @@
         <div class="sec-work-block p-mb-p cf">
             <div class="sec-work-block__img"><a href="#"><img src="./static/img/top/sample.png" alt="作品名" /></a></div>
             <div class="sec-work-block__info">
-                <h2 class="h2"><a href="#">タイトルタイトル</a></h2>
+                <h2 class="h3"><a href="#">タイトルタイトル</a></h2>
                 <div class="sec-work-block__info-date">投稿日：2018/22/22</div>
                 <div class="sec-work-block__status">
                   <span><img src="./static/img/common/icon-play-off-gray.png" height="10" /> 2518</span>
