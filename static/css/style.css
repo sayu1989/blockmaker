@@ -589,6 +589,13 @@ footer{
   text-align: center;
   border-right: 1px solid #ddd;
   font-size: 1.24rem;
+  pointer: cursor;
+}
+.sec-block-set__button-block.active span{
+  opacity: 1;
+}
+.sec-block-set__button-block span{
+  opacity: .5;
 }
 .sec-block-set__button-block img{
 }
@@ -603,6 +610,12 @@ footer{
   bottom: 20px;
   width: 100%;
   left: 0;
+  opacity: .5;
+  transition: .3s;
+}
+.sec-block-set__color-choose.active{
+  transition: .3s;
+  opacity: 1;
 }
 .sec-block-set__color-choose ul{
   text-align: center;
@@ -630,17 +643,17 @@ footer{
   opacity: 0.9;
 }
 .cr{
-  background: #F23455;
+  background-color: #F23455;
 }
 .cg{
-  background: #4ECDC4;
+  background-color: #4ECDC4;
 }
 .cy{
-  background: #FFE66D;
+  background-color: #FFE66D;
 }
 .cb{
-  background: #1476DC;
+  background-color: #1476DC;
 }
 .cp{
-  background: #B096E4;
+  background-color: #B096E4;
 }
