@@ -55,6 +55,10 @@ def mypage():
         myid = myinfo.name
         myimage = myinfo.profile_image_url
 
+        response.set_cookie('myname', myname, secret="myname-sec")
+        response.set_cookie('myid', myid, secret="myid-sec")
+        response.set_cookie('myimage', myimage, secret="myid-image")
+
         # ユーザーテーブルの全TwitterIDから検索して true false
 
         #if #このTwitterIDがサイト内に登録済みの場合
@@ -71,14 +75,26 @@ def mypage():
 
     return template('mypage.j2', myname=myname, myid=myid, myimage=myimage )
 
-
+# ゲーム作成画面
 @route('/create')
 def mypage():
+    myname = request.get_cookie('myname')
+    myid = request.get_cookie('myid')
+    myimage = request.get_cookie('myimage')
     # プロフィール情報を取得
-    myname = 'テストネーム'
-    myid = 'falkjsd'
-    myimage = 'sample.png'
     return template('create.j2', myname=myname, myid=myid, myimage=myimage)
+
+@route('/create2', method=["GET", "POST"])
+def create_block():
+    imageMiddleGet = request.forms.get('imageBottom')
+    imageBottomGet = request.forms.get('imageMiddle')
+    imageMiddle = response.set_cookie('imageMiddle', imageMiddleGet, secret="image-middle")
+    imageBottom = response.set_cookie('imageBottom', imageBottomGet, secret="image-bottom")
+    # ユーザー情報
+    myname = request.get_cookie('myname')
+    myid = request.get_cookie('myid')
+    myimage = request.get_cookie('myimage')
+    return template('create2.j2', imageMiddle=imageMiddleGet, imageBottom=imageBottomGet, myname=myname, myid=myid, myimage=myimage )
 
 # static file CSS
 @app.route('/static/css/<filename:path>')
@@ -89,6 +105,11 @@ def static_css(filename):
 @app.route('/static/img/<filename:path>')
 def static_img(filename):
     return static_file(filename, root=STATIC_DIR+"/img")
+
+# static JS
+@app.route('/static/js/<filename>')
+def js_dir(filename):
+    return static_file(filename, root=STATIC_DIR+"/js")
 
 @get("/login")
 def login():
