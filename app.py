@@ -83,10 +83,14 @@ def mypage():
         cur.execute("select twitter_name from users;")
         twitter_id =  cur.fetchall()
 
+        for row in cur.fetchall():
+            global row1
+            row1 = row[0]
+
         cur.close
         conn.close
 
-    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage,rows = twitter_id )
+    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage,rows = row1 )
 
 # ゲーム作成画面
 @route('/create')
