@@ -96,6 +96,19 @@ def create_block():
     myimage = request.get_cookie('myimage')
     return template('create2.j2', imageMiddle=imageMiddleGet, imageBottom=imageBottomGet, myname=myname, myid=myid, myimage=myimage )
 
+@route('/create3', method=["GET", "POST"])
+def create_block():
+    imageMiddleGet = request.forms.get('imageBottom')
+    imageBottomGet = request.forms.get('imageMiddle')
+    imageMiddle = response.set_cookie('imageMiddle', imageMiddleGet, secret="image-middle")
+    imageBottom = response.set_cookie('imageBottom', imageBottomGet, secret="image-bottom")
+    # ユーザー情報
+    myname = request.get_cookie('myname')
+    myid = request.get_cookie('myid')
+    myimage = request.get_cookie('myimage')
+    return template('create2.j2', imageMiddle=imageMiddleGet, imageBottom=imageBottomGet, myname=myname, myid=myid, myimage=myimage )
+
+
 # static file CSS
 @app.route('/static/css/<filename:path>')
 def static_css(filename):
