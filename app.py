@@ -72,8 +72,21 @@ def mypage():
         myname = 'わしのなまえ'
         myid = 'slkajf'
         myimage = 'sample.png'
+        import mysql.connector
 
-    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage )
+        conn = mysql.connector.connect(user='root', password='coro22nero', host='localhost', database='blockmaker_db')
+        cur = conn.cursor()
+
+        #cur.execute("select * from users;")
+
+        #for row in cur.fetchall():
+        cur.execute("select twitter_name from users;")
+        twitter_id =  cur.fetchall()
+
+        cur.close
+        conn.close
+
+    return template('mypage.j2', myname=myname, myid=myid, myimage=myimage,rows = twitter_id )
 
 # ゲーム作成画面
 @route('/create')
