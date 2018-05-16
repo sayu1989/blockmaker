@@ -20,6 +20,8 @@ app = bottle.app()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
+row1 = 'test'
+
 @route("/")
 def html_index():
     # マイページにcallback
@@ -35,6 +37,7 @@ def html_index():
 
 @route('/mypage')
 def mypage():
+    global row1
     if request.GET.get('oauth_token'):
         # Let's say this is a web app, so we need to re-build the auth handler
         auth = tweepy.OAuthHandler("0V0gxq8Gbqu52x1YGIwbGOjRR", "xoOfOV5sh0tpbQLazDMMEIqVyWpEB8yqCf5q3gL1V6ZuG28qz2")
@@ -60,7 +63,18 @@ def mypage():
         response.set_cookie('myimage', myimage, secret="myid-image")
 
         # ユーザーテーブルの全TwitterIDから検索して true false
+        import mysql.connector
 
+        conn = mysql.connector.connect(user='root', password='coro22nero', host='localhost', database='blockmaker_db')
+        cur = conn.cursor()
+
+        cur.execute("select twitter_name from users;")
+
+        for row in cur.fetchall():
+            row1 = row[0]
+
+        cur.close
+        conn.close
         #if #このTwitterIDがサイト内に登録済みの場合
           # データベースから該当のユーザーIDを取得して変数に格納
         #else 新規登録ユーザーの場合
@@ -72,23 +86,7 @@ def mypage():
         myname = 'わしのなまえ'
         myid = 'slkajf'
         myimage = 'sample.png'
-        import mysql.connector
 
-        conn = mysql.connector.connect(user='root', password='coro22nero', host='localhost', database='blockmaker_db')
-        cur = conn.cursor()
-
-        #cur.execute("select * from users;")
-
-        #for row in cur.fetchall():
-        cur.execute("select twitter_name from users;")
-        twitter_id =  cur.fetchall()
-
-        for row in cur.fetchall():
-            global row1
-            row1 = row[0]
-
-        cur.close
-        conn.close
 
     return template('mypage.j2', myname=myname, myid=myid, myimage=myimage,rows = row1 )
 
