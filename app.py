@@ -1,4 +1,4 @@
--#!/user/bin/env python
+#!/user/bin/env python
 # -*- coding: utf-8 -*-
 from bottle import route, run, template, request, static_file, url, get, post, response, error
 import bottle
