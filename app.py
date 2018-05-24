@@ -87,7 +87,6 @@ def mypage():
         myid = 'slkajf'
         myimage = 'sample.png'
 
-
     return template('mypage.j2', myname=myname, myid=myid, myimage=myimage,rows = row1 )
 
 # ゲーム作成画面
