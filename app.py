@@ -65,7 +65,7 @@ def mypage():
         # ユーザーテーブルの全TwitterIDから検索して true false
         import mysql.connector
 
-        conn = mysql.connector.connect(user='root', password='coro22nero', host='localhost', database='blockmaker_db')
+        conn = mysql.connector.connect(user='nyanteam', password='22necodb', host='mysql717.db.sakura.ne.jp', database='nyanteam_block')
         cur = conn.cursor()
 
         cur.execute("select twitter_name from users;")
